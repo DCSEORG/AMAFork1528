@@ -1,0 +1,106 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "My Expenses";
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        <strong>Database Error:</strong> @Model.ErrorMessage
+    </div>
+}
+
+<div class="container-fluid px-4 py-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">
+                <i class="bi bi-receipt"></i> Expenses
+            </h3>
+        </div>
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <form method="get" class="d-flex gap-2">
+                        <input type="text" name="filter" value="@Model.Filter" class="form-control" placeholder="Filter expenses..." />
+                        <button type="submit" class="btn btn-outline-primary">
+                            <i class="bi bi-search"></i> Filter
+                        </button>
+                        @if (!string.IsNullOrEmpty(Model.Filter))
+                        {
+                            <a href="/Index" class="btn btn-outline-secondary">Clear</a>
+                        }
+                    </form>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="/AddExpense" class="btn btn-success">
+                        <i class="bi bi-plus-circle"></i> Add Expense
+                    </a>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Expenses.Any())
+                        {
+                            @foreach (var expense in Model.Expenses)
+                            {
+                                <tr>
+                                    <td>@expense.ExpenseDate.ToString("dd/MM/yyyy")</td>
+                                    <td>@expense.CategoryName</td>
+                                    <td>£@expense.Amount.ToString("N2")</td>
+                                    <td>
+                                        @if (expense.StatusName == "Draft")
+                                        {
+                                            <span class="badge bg-secondary">@expense.StatusName</span>
+                                        }
+                                        else if (expense.StatusName == "Submitted")
+                                        {
+                                            <span class="badge bg-primary">@expense.StatusName</span>
+                                        }
+                                        else if (expense.StatusName == "Approved")
+                                        {
+                                            <span class="badge bg-success">@expense.StatusName</span>
+                                        }
+                                        else if (expense.StatusName == "Rejected")
+                                        {
+                                            <span class="badge bg-danger">@expense.StatusName</span>
+                                        }
+                                    </td>
+                                    <td>@expense.Description</td>
+                                    <td>
+                                        @if (expense.StatusName == "Draft")
+                                        {
+                                            <form method="post" class="d-inline">
+                                                <input type="hidden" name="expenseId" value="@expense.ExpenseId" />
+                                                <input type="hidden" name="action" value="submit" />
+                                                <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                                            </form>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="6" class="text-center text-muted">No expenses found</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
