@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddSingleton<DatabaseService>();
+builder.Services.AddSingleton<AIService>();
 
 // Add Swagger
 builder.Services.AddEndpointsApiExplorer();

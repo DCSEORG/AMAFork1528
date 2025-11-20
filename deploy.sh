@@ -2,7 +2,7 @@
 set -e
 
 # Configuration
-INCLUDE_CHAT_UI=false  # Set to true to deploy GenAI resources
+INCLUDE_CHAT_UI=false  # Set to true to deploy GenAI resources (default: false)
 RESOURCE_GROUP="rg-expensemgmt-dev"
 LOCATION="uksouth"
 BASE_NAME="expensemgmt"
