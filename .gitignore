@@ -1,0 +1,28 @@
+# Build outputs
+**/bin/
+**/obj/
+publish/
+
+# .NET
+*.dll
+*.exe
+*.pdb
+!app.zip
+
+# IDE
+.vs/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
