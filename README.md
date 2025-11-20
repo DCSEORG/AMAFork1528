@@ -3,11 +3,7 @@
 # App-Mod-Assist
 A project to show how GitHub coding agent can turn screenshots of legacy apps into working proof-of-concepts for cloud native Azure replacements if the legacy database schema is also provided
 
-WARNING: COLLABORATORS MUST FORK THE REPO AGAIN EVERY TIME THEY RUN THE CODING AGENT TO TEST IT TO NOT POLLUTE THIS BASE TEMPLATE (< DELETE WHEN HAVE WAY OF WORKING)
-
-(REAL INSTRUCTIONS >) 
-
-1. Fork this repo then open the coding agent and use app-mod-assist agent telling it "modernise my app" - making sure to replace the screenshots and sql schema first
-2. Clone repo when code is generated locally and open VS Code
+1. Fork this repo then open the coding agent and use app-mod-assist agent telling it "modernise my app" - making sure to replace the example screenshots and sql schema first
+2. When the agent has completed the Pull Reuest with the code, accept the PR and then clone the repo in VS Code locally
 3. In terminal AZ LOGIN > Set a subscription context
 4. Run the deploy.sh file (ensuring the settings in the bicep files are what you want - it will have RG name, SKU, UKSOUTH etc already set)
